@@ -1,0 +1,29 @@
+﻿<Window x:Class="POS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" FontSize="24
+        "
+        >
+    <DockPanel>
+        <DataGrid x:Name="tabela" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Naziv" Binding="{Binding Path=Naziv}"/>
+            <DataGridTextColumn Header="Sifra" Binding="{Binding Path=Sifra}"/>
+            <DataGridTextColumn Header="Kolicina" Binding="{Binding Path=Kolicina}"/>
+            <DataGridTextColumn Header="Ucena" Binding="{Binding Path=Ucena}"/>
+            <DataGridTextColumn Header="Marza" Binding="{Binding Path=Marza}"/>
+            <DataGridTextColumn Header="PDV" Binding="{Binding Path=PDV}"/>
+            <DataGridTextColumn Header="Cena" Binding="{Binding Path=Cena}"/>
+
+        </DataGrid.Columns>
+    </DataGrid>
+        <StackPanel>
+            <Button x:Name="UNOS" Click="UNOS_Click">UNOS</Button>
+            <Button>BRISANJE</Button>
+        </StackPanel>
+    </DockPanel>
+</Window>

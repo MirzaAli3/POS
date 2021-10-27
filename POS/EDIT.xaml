@@ -1,0 +1,30 @@
+﻿<Window x:Class="POS.EDIT"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS"
+        mc:Ignorable="d"
+        Title="EDIT" Height="450" Width="800" FontSize="24">
+
+    <UniformGrid Columns="2">
+        <Label>Naziv</Label>
+        <TextBox Text="{Binding Path=Naziv}"></TextBox>
+        
+        <Label>Sifra</Label>
+        <TextBox Text="{Binding Path=Sifra}"></TextBox>
+        <Label>Kolicina</Label>
+        <TextBox Text="{Binding Path=Kolicina}"></TextBox>
+        <Label>Ucena</Label>
+        <TextBox Text="{Binding Path=Ucena}"></TextBox>
+        <Label>Marza</Label>
+        <TextBox Text="{Binding Path=Marza}"></TextBox>
+        <Label>PDV</Label>
+        <TextBox Text="{Binding Path=PDV}"></TextBox>
+        <Label>Cena</Label>
+        <TextBox Text="{Binding Path=Cena}"></TextBox>
+        <Button x:Name="OK" Click="OK_Click">OK</Button>
+        <Button>Cancel</Button>
+    </UniformGrid>
+   
+</Window>
