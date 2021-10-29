@@ -12,7 +12,7 @@
         <TextBox Text="{Binding Path=Naziv}"></TextBox>
         
         <Label>Sifra</Label>
-        <TextBox Text="{Binding Path=Sifra}"></TextBox>
+        <TextBox Text="{Binding Path=Sifra,ValidatesOnDataErrors=True}"></TextBox>
         <Label>Kolicina</Label>
         <TextBox Text="{Binding Path=Kolicina}"></TextBox>
         <Label>Ucena</Label>
@@ -22,7 +22,7 @@
         <Label>PDV</Label>
         <TextBox Text="{Binding Path=PDV}"></TextBox>
         <Label>Cena</Label>
-        <TextBox Text="{Binding Path=Cena}"></TextBox>
+        <TextBox Text="{Binding Path=Cena, ValidatesOnDataErrors=True}"></TextBox>
         <Button x:Name="OK" Click="OK_Click">OK</Button>
         <Button Click="Cancel">Cancel</Button>
     </UniformGrid>
