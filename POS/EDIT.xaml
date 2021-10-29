@@ -24,7 +24,7 @@
         <Label>Cena</Label>
         <TextBox Text="{Binding Path=Cena}"></TextBox>
         <Button x:Name="OK" Click="OK_Click">OK</Button>
-        <Button>Cancel</Button>
+        <Button Click="Cancel">Cancel</Button>
     </UniformGrid>
    
 </Window>

@@ -35,7 +35,11 @@ namespace POS
             DataContext = new Artikal();
             
         }
-        
+
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 
 }

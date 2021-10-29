@@ -23,7 +23,7 @@
     </DataGrid>
         <StackPanel>
             <Button x:Name="UNOS" Click="UNOS_Click">UNOS</Button>
-            <Button>BRISANJE</Button>
+            <Button Click="brisanje">BRISANJE</Button>
         </StackPanel>
     </DockPanel>
 </Window>

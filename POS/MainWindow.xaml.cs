@@ -38,5 +38,13 @@ namespace POS
             q.Owner = this;
             q.ShowDialog();
         }
+
+        private void brisanje(object sender, RoutedEventArgs e)
+        {
+            if (tabela.SelectedItem is not null)
+            {
+                artikli.Remove(tabela.SelectedItem as Artikal);
+            }
+        }
     }
 }
