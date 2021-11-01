@@ -18,11 +18,11 @@
         <Label>Ucena</Label>
         <TextBox Text="{Binding Path=Ucena}"></TextBox>
         <Label>Marza</Label>
-        <TextBox Text="{Binding Path=Marza}"></TextBox>
+        <TextBox Text="{Binding Path=Marza,UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label>PDV</Label>
         <TextBox Text="{Binding Path=PDV}"></TextBox>
         <Label>Cena</Label>
-        <TextBox Text="{Binding Path=Cena, ValidatesOnDataErrors=True}"></TextBox>
+		<TextBox Text="{Binding Path=Cena, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Button x:Name="OK" Click="OK_Click">OK</Button>
         <Button Click="Cancel">Cancel</Button>
     </UniformGrid>

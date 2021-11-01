@@ -57,7 +57,10 @@ namespace POS
             set
             {
                 _marza = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Sifra"));
+                _cena = _ucena * ((decimal)_marza / 100 + 1);
+
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Marza"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cena"));
             }
         }
         private int _pdv;
@@ -70,14 +73,16 @@ namespace POS
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PDV"));
             }
         }
-        private int _cena;
-        public int Cena
+        private decimal _cena;
+        public decimal Cena
         {
             get => _cena;
             set
             {
                 _cena = value;
+                _marza = (int)((_cena / _ucena - 1) * 100);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cena"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Marza"));
             }
         }
 
@@ -104,6 +109,7 @@ namespace POS
         public Majstor ()
         {
             RuleFor(a => a.Cena).GreaterThan(0).WithMessage("Cena jok");
+            RuleFor(a => a.Marza).GreaterThan(0).WithMessage("Marza jok");
         }
         
     }
