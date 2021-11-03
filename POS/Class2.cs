@@ -22,11 +22,11 @@ namespace POS
 			}
 		}
 		public DateTime VremeIzdavanje { get; set; }
-		public ObservableCollection<Artikal> Artikli { get; set; } = new();
+		public Dictionary<Artikal, int> Artikli { get; set; } = new();
 		public decimal Total
 		{
-			get=>Artikli.Aggregate<Artikal,decimal>
-				(0,(total,artikal)=>total+=artikal.Cena*
+			get=>Artikli.Aggregate<KeyValuePair<Artikal,int>,decimal>
+				(0,(total,artikal)=>total+=artikal.Key.Cena*artikal.Value);
 		}
 
 

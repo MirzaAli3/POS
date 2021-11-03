@@ -21,12 +21,22 @@ namespace POS
     /// </summary>
     public partial class MainWindow : Window
     {
-         ObservableCollection<Artikal> artikli = new();
+        public ObservableCollection<Artikal> artikli = new();
+       public Racun racun = new();
+       public string Sifra {
+            get;
+            set; }
+        public int Kolicina { get; set; } = 1;
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
+
+            racun.Artikli.Add(new Artikal { Sifra = "123" }, 5);
          
             tabela.ItemsSource = artikli;
+            ArtikliNaRacunu.ItemsSource = racun.Artikli;
+            
 
 
 
@@ -46,5 +56,29 @@ namespace POS
                 artikli.Remove(tabela.SelectedItem as Artikal);
             }
         }
-    }
+
+		private void UnosAritkla(object sender, RoutedEventArgs e)
+		{
+            if (artikli.Where(a => a.Sifra == Sifra).Any())
+            {
+                Artikal art = artikli.Where(a => a.Sifra == Sifra).First();
+                if (art.Kolicina >= Kolicina)
+                {
+                    art.Kolicina -= Kolicina;
+                    if (racun.Artikli.ContainsKey(art))
+                        racun.Artikli[art] += Kolicina;
+                    else
+                       racun.Artikli.Add(art, Kolicina);
+                    ArtikliNaRacunu.ItemsSource = null;
+                    ArtikliNaRacunu.ItemsSource = racun.Artikli;
+
+                }
+                else
+                    MessageBox.Show("Kolicina jok");
+            }
+            else
+                MessageBox.Show("Artikal jok");
+            
+		}
+	}
 }

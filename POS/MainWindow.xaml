@@ -8,7 +8,9 @@
         Title="MainWindow" Height="450" Width="800" FontSize="24
         "
         >
-    <DockPanel>
+	<TabControl>
+		<TabItem Header="ARTIKLI">
+			<DockPanel>
         <DataGrid x:Name="tabela" AutoGenerateColumns="False" IsReadOnly="True">
         <DataGrid.Columns>
             <DataGridTextColumn Header="Naziv" Binding="{Binding Path=Naziv}"/>
@@ -26,4 +28,29 @@
             <Button Click="brisanje">BRISANJE</Button>
         </StackPanel>
     </DockPanel>
+		</TabItem>
+		<TabItem Header="RACUNI">
+			<DockPanel>
+				<StackPanel DockPanel.Dock="Top">
+					<TextBox Text="{Binding Path=Sifra}"/>
+					<TextBox Text="{Binding Path=Kolicina}"/>
+					<Button Content="UnosAritkla" Click="UnosAritkla"/>
+				</StackPanel>
+				<StackPanel DockPanel.Dock="Bottom">
+					<Button/>
+				</StackPanel>
+				<DataGrid Name="ArtikliNaRacunu" AutoGenerateColumns="False" ColumnWidth="*" >
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Artikal" Binding="{Binding Path=Key.Sifra}"/>
+						<DataGridTextColumn Header="Kolicina" Binding="{Binding Path=Value}"/>
+						
+					</DataGrid.Columns>
+					
+				</DataGrid>
+				
+			</DockPanel>
+			
+		</TabItem>
+	</TabControl>
+	
 </Window>
