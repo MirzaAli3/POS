@@ -62,7 +62,7 @@ namespace POS
             
             ArtikliNaRacunu.ItemsSource = racun.Artikli;
 
-            PregledRacuna.ItemsSource = racuni;
+            PregledGrid.ItemsSource = racuni;
 
 
 
@@ -92,10 +92,17 @@ namespace POS
                 if (art.Kolicina >= Kolicina)
                 {
                     art.Kolicina -= Kolicina;
+                    int starakolicina = 0;
+
                     if (racun.Artikli.ContainsKey(art))
-                        racun.Artikli[art] += Kolicina;
-                    else
-                       racun.Artikli.Add(art, Kolicina);
+                    {
+
+                        starakolicina = racun.Artikli[art];
+                        racun.Artikli.Remove(art);
+                        
+                    }
+  
+                        racun.Artikli.Add(art, Kolicina+starakolicina);
                     ArtikliNaRacunu.ItemsSource = null;
                     ArtikliNaRacunu.ItemsSource = racun.Artikli;
 
@@ -115,10 +122,22 @@ namespace POS
 		private void ZavrsiRacun(object sender, RoutedEventArgs e)
 		{
             racun.VremeIzdavanje = DateTime.Now;
+            racun.ID = racuni.Count + 1;
             racuni.Add(racun);
             racun = new();
             ArtikliNaRacunu.ItemsSource = null;
             ArtikliNaRacunu.ItemsSource = racun.Artikli;
         }
+
+		private void Pregled(object sender, RoutedEventArgs e)
+		{
+            if (PregledGrid.SelectedItem is not null)
+            {
+                
+                PregledRacuna pregled = new(PregledGrid.SelectedItem as Racun);
+                pregled.Owner = this;
+                
+            }
+		}
 	}
 }
