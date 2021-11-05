@@ -37,7 +37,7 @@
 					<Button Content="UnosAritkla" Click="UnosAritkla"/>
 				</StackPanel>
 				<StackPanel DockPanel.Dock="Bottom">
-					<Button/>
+					<Button Content="ZavrsiRacun" Click="ZavrsiRacun"/>
 				</StackPanel>
 				<DataGrid Name="ArtikliNaRacunu" AutoGenerateColumns="False" ColumnWidth="*" >
 					<DataGrid.Columns>
@@ -48,6 +48,18 @@
 					
 				</DataGrid>
 				
+			</DockPanel>
+			
+		</TabItem>
+		<TabItem Header="PREGLED RACUNA">
+			<DockPanel>
+				<StackPanel DockPanel.Dock="Right">
+					<Button Content="Pregled"/>
+
+				</StackPanel>
+				<DataGrid Name="PregledRacuna">
+					
+				</DataGrid>
 			</DockPanel>
 			
 		</TabItem>
