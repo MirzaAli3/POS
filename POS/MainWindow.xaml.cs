@@ -20,25 +20,25 @@ namespace POS
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window,INotifyPropertyChanged
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public ObservableCollection<Artikal> artikli = new();
         public ObservableCollection<Racun> racuni = new();
-       public Racun racun = new();
-        
-       
-		public event PropertyChangedEventHandler PropertyChanged;
+        public Racun racun = new();
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
 
         private string _sifra;
 
-		public string Sifra {
-            get=>_sifra;
+        public string Sifra {
+            get => _sifra;
             set {
                 _sifra = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Sifra"));
             }
-                 }
+        }
         private int _kolicina = 1;
         public int Kolicina
         {
@@ -49,18 +49,28 @@ namespace POS
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Kolicina"));
             }
         }
+        private string _naziv;
+        public string Naziv
+        {
+            get => _naziv;
+            set
+            {
+                _naziv = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Naziv"));
+            }
+        }
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
 
-            artikli.Add(new Artikal { Ucena = 10, Sifra = "1111", Naziv = "Cocca", Cena = 11, Kolicina = 10});
-            artikli.Add(new Artikal { Ucena = 7 ,Sifra = "222", Naziv = "Fanta", Cena = 22, Kolicina = 8 });
-            artikli.Add(new Artikal { Ucena = 3  ,Sifra = "3333",Naziv = "Voda", Cena = 33, Kolicina = 4 });
-            artikli.Add(new Artikal { Ucena = 12 , Sifra = "4444",Naziv = "Pepsi", Cena = 44, Kolicina = 6 });
+            artikli.Add(new Artikal { Ucena = 10, Sifra = "1111", Naziv = "Cocca", Cena = 11, Kolicina = 10 });
+            artikli.Add(new Artikal { Ucena = 7, Sifra = "222", Naziv = "Fanta", Cena = 22, Kolicina = 8 });
+            artikli.Add(new Artikal { Ucena = 3, Sifra = "3333", Naziv = "Voda", Cena = 33, Kolicina = 4 });
+            artikli.Add(new Artikal { Ucena = 12, Sifra = "4444", Naziv = "Pepsi", Cena = 44, Kolicina = 6 });
 
             tabela.ItemsSource = artikli;
-            
+
             ArtikliNaRacunu.ItemsSource = racun.Artikli;
 
             PregledGrid.ItemsSource = racuni;
@@ -72,7 +82,7 @@ namespace POS
 
         private void UNOS_Click(object sender, RoutedEventArgs e)
         {
-            EDIT q = new(artikli) ;
+            EDIT q = new(artikli);
             q.Owner = this;
             q.ShowDialog();
         }
@@ -85,11 +95,11 @@ namespace POS
             }
         }
 
-		private void UnosAritkla(object sender, RoutedEventArgs e)
-		{
-            if (artikli.Where(a => a.Sifra == Sifra).Any())
+        private void UnosAritkla(object sender, RoutedEventArgs e)
+        {
+            if (artikli.Where(a => a.Sifra == Sifra || a.Naziv.ToLower()==Naziv.ToLower()).Any())
             {
-                Artikal art = artikli.Where(a => a.Sifra == Sifra).First();
+                Artikal art = artikli.Where(a => a.Sifra == Sifra || a.Naziv.ToLower() == Naziv.ToLower()).First();
                 if (art.Kolicina >= Kolicina)
                 {
                     art.Kolicina -= Kolicina;
@@ -107,6 +117,7 @@ namespace POS
                     ArtikliNaRacunu.ItemsSource = null;
                     ArtikliNaRacunu.ItemsSource = racun.Artikli;
 
+                    Naziv = string.Empty;
                     Sifra = string.Empty;
                     Kolicina = 1;
 
