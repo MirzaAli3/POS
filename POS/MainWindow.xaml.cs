@@ -25,7 +25,8 @@ namespace POS
         public ObservableCollection<Artikal> artikli = new();
         public ObservableCollection<Racun> racuni = new();
        public Racun racun = new();
-
+        
+       
 		public event PropertyChangedEventHandler PropertyChanged;
 
 
@@ -136,7 +137,7 @@ namespace POS
                 
                 PregledRacuna pregled = new(PregledGrid.SelectedItem as Racun);
                 pregled.Owner = this;
-                
+                pregled.ShowDialog();                
             }
 		}
 	}

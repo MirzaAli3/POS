@@ -21,9 +21,10 @@ namespace POS
 	{
 		public PregledRacuna(Racun r)
 		{
-			
+
 			InitializeComponent();
 			DataContext = r;
+			PregledajGrid.ItemsSource = r.Artikli;
 		}
 	}
 }

@@ -8,10 +8,13 @@
         Title="PregledRacuna" Height="450" Width="800">
 	<StackPanel>
 		<Label Content="{Binding Path=ID}"/>
-		<Label Content="{Binding Path=DatumIzdavanje}"/>
+		<Label Content="{Binding Path=VremeIzdavanje}"/>
 		<Label Content="{Binding Path=Total}"/>
-		<DataGrid Name="PregledajGrid" IsReadOnly="True" ColumnWidth="*" AutoGenerateColumns="True">
-						
+		<DataGrid Name="PregledajGrid" IsReadOnly="True" ColumnWidth="*" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv Artikla" Binding="{Binding Path=Key.Naziv}"/>
+                <DataGridTextColumn Header="Kolicina" Binding="{Binding Path=Value}"/>
+            </DataGrid.Columns>
 		</DataGrid>
 	</StackPanel>
 </Window>
